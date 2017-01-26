@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="treasure panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">{{ treasure.name }}</h2>
+         </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="{{ treasure.image.url }}" height="200" />
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>{{ treasure.value}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ treasure.material}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ treasure.location}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
