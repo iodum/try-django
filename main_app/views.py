@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from .models import Treasure
 from django.contrib.auth.models import User
-from .forms import TreasureForm
+from django.contrib.auth import authenticate, login, logout
+from .forms import TreasureForm, LoginForm, UserCreationForm
 
 
 def index(request):
@@ -30,3 +31,39 @@ def profile(request, username):
     user = User.objects.get(username=username)
     treasures = Treasure.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'treasures': treasures})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
+            user = authenticate(username=u, password=p)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/')
+                else:
+                    print('The account has been disabled!')
+            else:
+                print('The username and password were incorrect.')
+    else:
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
+
+
+def registration(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/login/')
+    else:
+        form = UserCreationForm()
+        return render(request, 'registration.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')

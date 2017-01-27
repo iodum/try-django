@@ -16,7 +16,15 @@
                     <img src="{% static 'images/logo.png' %}" width="80">
                 </a>
             </div>
-            <div class="nav nav-pills pull-right"></div>
+            <ul class="nav nav-pills pull-right">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' user.username %}">{{ user.username }}</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'registration' %}">Registration</a></li>
+                {% endif %}
+            </ul>
         </div>
 
     </nav>
