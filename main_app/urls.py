@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^login/$', views.login_view, name='login'),
     url(r'^logout/$', views.logout_view, name='logout'),
     url(r'^registration/$', views.registration, name='registration'),
+    url(r'^like_treasure/$', views.like_treasure, name='like_treasure'),
 ]
 
 if settings.DEBUG:
