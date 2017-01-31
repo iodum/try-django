@@ -12,8 +12,8 @@ def index(request):
     return render(request, 'index.html', {'treasures': treasures, 'form': form})
 
 
-def detail(request, treasure_id):
-    treasure = Treasure.objects.get(id=treasure_id)
+def detail(request, slug):
+    treasure = Treasure.objects.get(slug=slug)
     return render(request, 'detail.html', {'treasure': treasure})
 
 

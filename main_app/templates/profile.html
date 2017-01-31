@@ -7,7 +7,7 @@
         <div class="row">
             {% for t in treasures %}
                 <div class="col-md-4">
-                    <a href="/{{ t.id}}">
+                    <a href="{% url 'detail' t.slug %}">
                         <div class="panel-heading">
                             <h2 class="panel-title">{{ t.name }}</h2>
                          </div>

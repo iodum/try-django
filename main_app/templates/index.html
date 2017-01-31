@@ -8,14 +8,14 @@
             {% for t in treasures %}
                 <div class="col-md-4">
                     <div class="panel-heading">
-                        <h2 class="panel-title"><a href="/{{ t.id}}">{{ t.name }}</a></h2>
+                        <h2 class="panel-title"><a href="{% url 'detail' t.slug %}">{{ t.name }}</a></h2>
                         <a class="panel-username"
                          href="/user/{{t.user.username}}/">
                          by: {{ t.user.username }}
                          </a>
                      </div>
                     <div class="panel-body">
-                        <a href="/{{ t.id}}"><img src="{{ t.image.url }}" height="200" /></a><br/>
+                        <a href="{% url 'detail' t.slug %}"><img src="{{ t.image.url }}" height="200" /></a><br/>
                         <button id ="likes" data-id="{{t.id}}"
                          class="btn btn-mini btn-danger glyphicon glyphicon-heart" type="button">
                             {% if t.likes > 0 %} {{ t.likes }} {% endif %}
