@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'^music/', include('music.urls')),
     url(r'^treasures/([a-z0-9-]+)/$', views.detail, name='detail'),
     url(r'^post_url/$', views.post_treasure, name='post_treasure'),
     url(r'^user/(\w+)/$', views.profile, name='profile'),
